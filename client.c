@@ -67,7 +67,8 @@ int main(int argc, char **argv){
 	}
 
 	// sleep 1 day;
-    usleep(24*60*60*1000000);
+	unsigned int seconds = 24*60*60;
+    sleep(seconds);
 
 	return 0;
 sock_err:
