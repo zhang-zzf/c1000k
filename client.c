@@ -23,6 +23,7 @@ int main(int argc, char **argv){
 	struct sockaddr_in addr;
 	const char *ip = argv[1];
 	int base_port = atoi(argv[2]);
+	int total_conn = atoi(argv[3]);
 	int opt = 1;
 	int bufsize;
 	socklen_t optlen;
@@ -34,7 +35,7 @@ int main(int argc, char **argv){
 
 	char tmp_data[10];
 	int index = 0;
-	while(1){
+	while(connections < total_conn){
 		if(++index >= MAX_PORTS){
 			index = 0;
 		}
@@ -64,6 +65,9 @@ int main(int argc, char **argv){
 		setsockopt(sock, SOL_SOCKET, SO_SNDBUF, &bufsize, sizeof(bufsize));
 		setsockopt(sock, SOL_SOCKET, SO_RCVBUF, &bufsize, sizeof(bufsize));
 	}
+
+	// sleep 1 day;
+    usleep(24*60*60*1000000);
 
 	return 0;
 sock_err:
